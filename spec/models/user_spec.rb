@@ -57,7 +57,6 @@ RSpec.describe User, type: :model do
     %w[
       training_provider
       central_government
-      department_for_education
       local_authority
     ].each do |setting|
       context "when setting is #{setting}" do
