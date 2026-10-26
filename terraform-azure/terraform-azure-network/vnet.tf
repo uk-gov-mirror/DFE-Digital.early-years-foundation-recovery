@@ -106,3 +106,22 @@ resource "azurerm_subnet" "agw_snet" {
 
   #checkov:skip=CKV2_AZURE_31:NSG not required
 }
+
+# Create Subnet for private endpoint
+resource "azurerm_subnet" "private-endpoint-subnet" {
+  name                              = "${var.resource_name_prefix}-private-endpoint-snet"
+  virtual_network_name              = azurerm_virtual_network.vnet.name
+  resource_group_name               = var.resource_group
+  address_prefixes                  = ["172.1.4.0/26"]
+  service_endpoints                 = ["Microsoft.Storage"]
+  #private_endpoint_network_policies = "Enabled"
+
+  delegation {
+    name = "${var.resource_name_prefix}-webapp-dn"
+
+    service_delegation {
+      name    = "Microsoft.Web/serverFarms"
+      actions = ["Microsoft.Network/virtualNetworks/subnets/action"]
+    }
+  }
+}

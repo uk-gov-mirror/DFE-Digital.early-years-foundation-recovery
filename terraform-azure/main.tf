@@ -116,7 +116,8 @@ module "webapp" {
   webapp_health_check_eviction_time_in_min = 10
   agw_subnet_id                            = module.network.agw_subnet_id
   agw_pip_id                               = module.network.agw_pip_id
-  kv_id                                    = module.network.kv_id
+  #kv_id                                    = module.network.kv_id
+  kv_id                                    = module.network.rbackv_id
   kv_cert_secret_id                        = module.network.kv_cert_secret_id
   kv_mi_id                                 = module.network.kv_mi_id
   insights_connection_string               = module.monitor.insights_connection_string

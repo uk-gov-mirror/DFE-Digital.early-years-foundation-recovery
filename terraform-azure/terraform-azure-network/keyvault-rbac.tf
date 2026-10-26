@@ -21,8 +21,7 @@ resource "azurerm_key_vault" "rbackv" {
   sku_name            = "standard"
   tenant_id           = data.azurerm_client_config.az_config.tenant_id
 
-  purge_protection_enabled = true
-
+  purge_protection_enabled = true  
   enable_rbac_authorization     = true
   public_network_access_enabled = false
 
